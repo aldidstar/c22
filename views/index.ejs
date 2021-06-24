@@ -15,8 +15,8 @@
         id="Name"
         name="name"
         placeholder="Enter your name"
-       
-       
+        value="<%= query.name %>"
+        disabled
       />
     </div>
   </div>
@@ -32,7 +32,8 @@
         id="Weight"
         name="weight"
         placeholder="Enter your weight (kg)"
-       
+        value="<%= query.weight %>"
+        disabled
       />
     </div>
   </div>
@@ -48,7 +49,8 @@
         id="Height"
         name="height"
         placeholder="Enter your Height (cm)"
-       
+        value="<%= query.height %>"
+        disabled
       />
     </div>
   </div>
@@ -63,7 +65,8 @@
         class="form-control"
         id="start"
         name="start"
-        
+        value="<%= query.start %>"
+        disabled
       />
       <br /> to <br /><br />
       <input
@@ -72,7 +75,8 @@
         class="form-control"
         id="end"
         name="end"
-        
+        value="<%= query.end %>"
+        disabled
         /> 
     </div>
   </div>
@@ -82,9 +86,9 @@
     <label for="Status" class="col-sm-2 col-form-label">Marriage Status</label>
     <div class="col-sm-10">
         <select type="boolean" id="Status" name="status" disabled>
-            <option >Choose your choice</option>
-            <option >true</option>
-            <option >false</option>
+            <option value="">Choose your choice</option>
+            <option value="true"<%= query.status == 'true' ? ' selected' : '' %>>true</option>
+            <option value="false"<%= query.status == 'false' ? ' selected' : '' %>>false</option>
           </select>
       
     </div>
@@ -125,21 +129,83 @@
 
 <nav aria-label="...">
   <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    <li class="page-item ">
+      <% if(page > 1) { %>
+          <% let i = page  %>
+          <% i--  %>
+      <a class="page-link " href="<%= url.replace(`page=${page}`, `page=${i}`) %>"  >Previous</a>
+      <% } %>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <% for(let i = 1; i <= pages ; i++) { %>
+    <li class="page-item <%= page == i ? 'active' : '' %>"><a class="page-link" href="<%= url.replace(`page=${page}`, `page=${i}`) %>"><%= i %></a></li>
+    <% } %>
+  </li>
+   
+    
     <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+      <% if(page <= pages - 1) { %>
+          <% let i = page  %>
+          <% i++  %>
+      <a class="page-link" href="<%= url.replace(`page=${page}`, `page=${i}`) %>">Next</a>
+      <% } %>
     </li>
   </ul>
 </nav>
 
 <a class="btn btn-primary" href="add"> Add</a>
+
+<script>
+  function myFunction1() {
+    if (document.getElementById("myCheck1").checked == true) {
+      document.getElementById("Name").disabled = false;
+    }
+    else {
+      document.getElementById("Name").disabled = true;
+    }
+    
+  }
+  function myFunction2() {
+    if (document.getElementById("myCheck2").checked == true) {
+      document.getElementById("Weight").disabled = false;
+    }
+    else {
+      document.getElementById("Weight").disabled = true;
+    }
+    
+  }
+
+  function myFunction3() {
+    if (document.getElementById("myCheck3").checked == true) {
+      document.getElementById("Height").disabled = false;
+    }
+    else {
+      document.getElementById("Height").disabled = true;
+    }
+    
+  }
+
+  function myFunction4() {
+    if (document.getElementById("myCheck4").checked == true) {
+      document.getElementById("start").disabled = false;
+      document.getElementById("end").disabled = false;
+    }
+    else {
+      document.getElementById("start").disabled = true;
+      document.getElementById("end").disabled = true;
+    }
+    
+  }
+
+  function myFunction5() {
+    if (document.getElementById("myCheck5").checked == true) {
+      document.getElementById("Status").disabled = false;
+    }
+    else {
+      document.getElementById("Status").disabled = true;
+    }
+    
+  }
+  </script>
 
 
 
