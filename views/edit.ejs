@@ -1,0 +1,87 @@
+<%- include('partials/header') %>
+<form action="" method="post">
+  <h1>EDIT DATA</h1>
+  <div class="mb-3 row">
+    <label for="Name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        value="<%= nama.nama %>"
+        class="form-control"
+        id="Name"
+        name="name"
+        placeholder="Enter your name"
+        
+      />
+    </div>
+  </div>
+  
+  <div class="mb-3 row">
+    <label for="Weight" class="col-sm-2 col-form-label">Weight</label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        value="<%= nama.berat %>"
+        class="form-control"
+        id="Weight"
+        name="weight"
+        placeholder="Enter your weight (kg)"
+        
+      />
+    </div>
+  </div>
+
+  
+  <div class="mb-3 row">
+    <label for="Height" class="col-sm-2 col-form-label">Height</label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        value="<%= nama.tinggi %>"
+        class="form-control"
+        id="Height"
+        name="height"
+        placeholder="Enter your Height (cm)"
+       
+      />
+    </div>
+  </div>
+
+ 
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Date</label>
+    <div class="col-sm-10">
+      <input
+        type="date"
+        value="<%= moment(nama.tanggal).format('YYYY-MM-DD') %>" 
+        class="form-control"
+        id="Date"
+        name="date"
+        placeholder="Enter your birthdate"
+        
+      />
+    </div>
+  </div>
+ 
+  <div class="mb-3 row">
+    <label for="Status" class="col-sm-2 col-form-label">Marriage Status</label>
+    <div class="col-sm-10">
+        <select type="boolean" id="Status" name="status" >
+            <option value="">Choose your choice</option>
+            <option value="true"<%= nama.hubungan == 'true' ? ' selected' : '' %>>true</option>
+            <option value="false"<%= nama.hubungan == 'false' ? ' selected' : '' %>>false</option>
+          </select>
+      
+    </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Update
+  </button>
+ 
+  <a class="btn btn-warning" href="/">Back</a>
+ 
+  
+</form>
+  
+<%- include('partials/footer') %>
